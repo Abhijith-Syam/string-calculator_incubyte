@@ -9,5 +9,11 @@ RSpec.describe StringCalculator do
 
       expect(calculator.add("")).to eq(0)
     end
+
+     it 'returns the number when only one number is passed' do
+      calculator = StringCalculator.new
+
+      expect(calculator.add("1")).to eq(1)
+    end
   end
 end
