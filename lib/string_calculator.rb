@@ -11,23 +11,19 @@ class StringCalculator
 
   private
 
-  # Returns array of integers from a string of comma-separated numbers
+  # Returns array of integers from a string of comma-separated numbers, skips numbers greater than 1000
   def operands_from_string(number_string, delimiter)
     number_string.split(delimiter).map(&:to_i).select { |n| n < 1000 }
   end
 
   # Returns the default or custom delimeter if any and the string containing the operand numbers
   def extract_delimiter_and_number_string(argument_string)
-    number_string = argument_string
-    delimiter = /[\n,]/
-    if argument_string.start_with?("//")
-      lines = argument_string.split("\n", 2)
-      custom_delimiter = lines[0][2..-1]
-      delimiter = /[\n,#{Regexp.escape(custom_delimiter)}]/
-      number_string = lines[1]
-    end
+    return [/[\n,]/, argument_string] unless argument_string.start_with?("//")
 
-    [delimiter, number_string]
+    lines = argument_string.split("\n", 2)
+    custom_delimiter = lines[0][2..-1]
+
+    [/[\n,#{Regexp.escape(custom_delimiter)}]/, lines[1]]
   end
 
   # Validates for non-negative operands
