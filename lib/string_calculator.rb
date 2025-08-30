@@ -3,7 +3,8 @@ class StringCalculator
     return 0 if numbers.empty?
 
     delimiter, number_string = extract_delimiter_and_number_string(numbers)
-    operands_from_string(number_string, delimiter).sum
+    operands = operands_from_string(number_string, delimiter)
+    operands.sum
   end
 
   private
