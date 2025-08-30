@@ -10,7 +10,7 @@ class StringCalculator
 
   # Returns array of integers from a string of comma-separated numbers
   def extract_operands_from_string(number_string, delimiter)
-    operands = number_string.split(delimiter).map(&:to_i)
+    operands = number_string.split(delimiter).map(&:to_i).select { |n| n < 1000 }
     validate_operands(operands)
 
     operands
