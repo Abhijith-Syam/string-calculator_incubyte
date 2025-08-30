@@ -4,6 +4,8 @@ class StringCalculator
 
     delimiter, number_string = extract_delimiter_and_number_string(numbers)
     operands = operands_from_string(number_string, delimiter)
+    validate_operands(operands)
+
     operands.sum
   end
 
@@ -11,10 +13,7 @@ class StringCalculator
 
   # Returns array of integers from a string of comma-separated numbers
   def operands_from_string(number_string, delimiter)
-    operands = number_string.split(delimiter).map(&:to_i).select { |n| n < 1000 }
-    validate_operands(operands)
-
-    operands
+    number_string.split(delimiter).map(&:to_i).select { |n| n < 1000 }
   end
 
   # Returns the default or custom delimeter if any and the string containing the operand numbers
@@ -31,6 +30,7 @@ class StringCalculator
     [delimiter, number_string]
   end
 
+  # Validates for non-negative operands
   def validate_operands(operands)
     negative_operands = operands.select { |n| n < 0 }
 
