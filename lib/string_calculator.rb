@@ -3,13 +3,13 @@ class StringCalculator
     return 0 if numbers.empty?
 
     delimiter, number_string = extract_delimiter_and_number_string(numbers)
-    extract_operands_from_string(number_string, delimiter).sum
+    operands_from_string(number_string, delimiter).sum
   end
 
   private
 
   # Returns array of integers from a string of comma-separated numbers
-  def extract_operands_from_string(number_string, delimiter)
+  def operands_from_string(number_string, delimiter)
     operands = number_string.split(delimiter).map(&:to_i).select { |n| n < 1000 }
     validate_operands(operands)
 
