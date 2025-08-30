@@ -9,6 +9,6 @@ class StringCalculator
 
   # Returns array of integers from a string of comma-separated numbers
   def extract_operands_from_string(argument_string)
-    argument_string.split(',').map(&:to_i)
+    argument_string.split(/[\n,]/).map(&:to_i)
   end
 end
