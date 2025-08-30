@@ -26,7 +26,7 @@ class StringCalculator
     [/[\n,#{Regexp.escape(custom_delimiter)}]/, lines[1]]
   end
 
-  # Validates for non-negative operands
+  # Validates for negative operands
   def validate_operands(operands)
     negative_operands = operands.select { |n| n < 0 }
 
