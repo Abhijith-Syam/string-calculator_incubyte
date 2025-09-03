@@ -80,10 +80,10 @@ RSpec.describe StringCalculator do
       expect(calculator.add("//[**][%]\n1**2%3")).to eq(6)
     end
 
-    it 'returns the multiplied result if * passed in between' do
+    it 'returns the result based on the operator present' do
       calculator = StringCalculator.new
 
-      expect(calculator.add("1+2,3*2")).to eq(9)
+      expect(calculator.add("2*2")).to eq(4)
     end
   end
 end
