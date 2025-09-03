@@ -85,5 +85,11 @@ RSpec.describe StringCalculator do
 
       expect(calculator.add("2*2")).to eq(4)
     end
+
+    it 'returns the result based on the multiple operators present' do
+      calculator = StringCalculator.new
+
+      expect(calculator.add("1+2,3*2")).to eq(9)
+    end
   end
 end
