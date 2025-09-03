@@ -1,15 +1,30 @@
 class StringCalculator
   def add(numbers)
     return 0 if numbers.empty?
+    custom_delimiter = numbers.start_with?("//")
 
     delimiter, number_string = extract_delimiter_and_number_string(numbers)
     operands = operands_from_string(number_string, delimiter)
     validate_operands(operands)
 
+    return multiplied_result(number_string) if multiplication_operand_present?(number_string) && !custom_delimiter
+
     operands.sum
   end
 
   private
+
+  def multiplied_result(numbers)
+    result = 1
+    numbers.split('*').each do |n|
+      result = result * n.to_i
+    end
+    result
+  end
+
+  def multiplication_operand_present?(numbers)
+    numbers.split(',').select { |n| n.include?('*') }.length > 0
+  end
 
   # Returns array of integers from a string of comma-separated numbers, skips numbers greater than 1000
   def operands_from_string(number_string, delimiter)
